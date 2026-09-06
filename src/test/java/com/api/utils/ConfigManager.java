@@ -13,6 +13,7 @@ public class ConfigManager {
 	private static String env;
 
 	static {
+		//Static Block
 		env = System.getProperty("env", "qa");
 		env = env.toLowerCase().trim();
 		switch (env) {
