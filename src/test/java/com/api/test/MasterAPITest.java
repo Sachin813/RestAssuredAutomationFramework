@@ -18,7 +18,7 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class MasterAPITest {
 
-	@Test
+	@Test(description= "Verify if the master API is giving correct response", groups = { "api", "regression", "smoke" })
 	public void verifyMasterAPIResponse() {
 		given().spec(SpecUtil.requestSpecWithAuth(FD)).when().post("/master").then()
 				.spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success"))
@@ -31,7 +31,7 @@ public class MasterAPITest {
 	
 	
 	
-	@Test
+	@Test(description= "Verify if the Master API is giving correct response if the token is invalid", groups = { "api", "regression", "smoke", "Negative" })
 	public void missingAuthTokenInMasterAPI() {
 		given().spec(SpecUtil.requestSpec()).when().post("/master").then().spec(SpecUtil.responseSpec_Text(401));
 	}

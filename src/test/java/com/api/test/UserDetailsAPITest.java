@@ -23,7 +23,7 @@ import static io.restassured.RestAssured.*;
 public class UserDetailsAPITest {
 	
 	
-	@Test
+	@Test(description= "Verify if the UserDetails API response is shown correctly", groups = { "api", "regression", "smoke" })
 	public void userDetailsAPITest() throws IOException {
 		
 		given().spec(SpecUtil.requestSpecWithAuth(FD)).when().get("userdetails").then().spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success")).and()
