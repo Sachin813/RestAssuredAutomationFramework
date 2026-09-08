@@ -18,7 +18,7 @@ import static com.api.utils.ConfigManager.*;
 
 public class CountAPITest {
 
-	@Test
+	@Test(description= "Verify if the count API is giving correct response", groups = { "api", "regression", "smoke" })
 	public void verifyCountAPIResponse() {
 		given().spec(SpecUtil.requestSpecWithAuth(FD)).when().get("/dashboard/count").then().log().all().spec(SpecUtil.responseSpec_OK())
 				.body("message", equalTo("Success")).body("data", notNullValue())
@@ -27,7 +27,7 @@ public class CountAPITest {
 				.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/CountResponseSchema-FD.json"));
 	}
 
-	@Test
+	@Test(description= "Verify if the count API is giving correct response if the token is missing", groups = { "api", "regression", "smoke", "Negative" })
 	public void CountAPIMissingAuthToken() {
 		given().spec(SpecUtil.requestSpec()).when().get("/dashboard/count").then().spec(SpecUtil.responseSpec_Text(401));
 	}
